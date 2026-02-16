@@ -1,0 +1,7 @@
+scripts/*.json
+scripts/__pycache__/
+scripts/_*.html
+scripts/_*.applescript
+scripts/_*.js
+*.pyc
+.DS_Store

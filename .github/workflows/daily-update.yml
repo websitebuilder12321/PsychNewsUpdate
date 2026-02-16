@@ -1,0 +1,55 @@
+name: Daily Newsletter Update
+
+on:
+  schedule:
+    # Run at 6:00 AM ET (11:00 UTC) every day
+    - cron: '0 11 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch articles and build newsletter
+        run: |
+          python scripts/run_newsletter.py --fetch-only
+          python scripts/run_newsletter.py --build-from-json
+        env:
+          PRD_OUTPUT_DIR: ${{ github.workspace }}/scripts
+
+      - name: Copy newsletter to site
+        run: |
+          LATEST=$(ls -t scripts/PsychResearchDaily_*.html 2>/dev/null | head -1)
+          if [ -z "$LATEST" ]; then
+            LATEST="scripts/latest.html"
+          fi
+          if [ -f "$LATEST" ]; then
+            sed -i 's|<head>|<head><script>if(sessionStorage.getItem("prd_access")!=="granted"){window.location.href="index.html";}</script>|' "$LATEST"
+            cp "$LATEST" newsletter.html
+            echo "Updated newsletter.html from $LATEST"
+          else
+            echo "No newsletter file generated"
+            exit 0
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add newsletter.html
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Daily newsletter update — $(date +'%B %d, %Y')"
+          git push

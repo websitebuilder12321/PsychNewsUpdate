@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psych Research Daily</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-container {
+  text-align: center;
+  padding: 60px 40px;
+  max-width: 420px;
+  width: 100%;
+}
+.logo-area {
+  margin-bottom: 36px;
+}
+.logo-icon {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, #1a365d 0%, #2d5a8e 50%, #3a7ec2 100%);
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(26, 54, 93, 0.3);
+}
+h1 {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #1a365d;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+.subtitle {
+  font-size: 0.95em;
+  color: #6b7280;
+  margin-bottom: 36px;
+}
+.code-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+.code-input {
+  width: 200px;
+  padding: 14px 20px;
+  font-size: 1.4em;
+  text-align: center;
+  letter-spacing: 8px;
+  border: 2px solid #d1d5db;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d1d1f;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.code-input:focus {
+  border-color: #2d5a8e;
+  box-shadow: 0 0 0 3px rgba(45, 90, 142, 0.15);
+}
+.code-input.error {
+  border-color: #ef4444;
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+.enter-btn {
+  padding: 12px 40px;
+  background: linear-gradient(135deg, #1a365d, #2d5a8e);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.enter-btn:hover { opacity: 0.9; }
+.error-msg {
+  color: #ef4444;
+  font-size: 0.88em;
+  min-height: 20px;
+  margin-top: 4px;
+}
+.footer-note {
+  margin-top: 48px;
+  font-size: 0.82em;
+  color: #9ca3af;
+}
+</style>
+</head>
+<body>
+<div class="login-container">
+  <div class="logo-area">
+    <div class="logo-icon">&#129504;</div>
+    <h1>Psych Research Daily</h1>
+    <p class="subtitle">Curated Psychiatric Research & Clinical Updates</p>
+  </div>
+  <form class="code-form" onsubmit="return checkCode()">
+    <label for="code" style="font-size:0.9em;color:#6b7280;">Enter access code</label>
+    <input type="password" id="code" class="code-input" maxlength="4" pattern="\d{4}" inputmode="numeric" autocomplete="off" autofocus>
+    <button type="submit" class="enter-btn">Enter</button>
+    <div class="error-msg" id="error"></div>
+  </form>
+  <p class="footer-note">For authorized clinical staff only</p>
+</div>
+<script>
+// Simple client-side code gate.
+// The hash is checked instead of storing the code in plain text.
+// SHA-256 of "1111" = pre-computed below.
+async function hashCode(code) {
+  const data = new TextEncoder().encode(code);
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// SHA-256("1111")
+const VALID_HASH = "0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c";
+
+async function checkCode() {
+  const input = document.getElementById('code');
+  const error = document.getElementById('error');
+  const code = input.value.trim();
+
+  if (!code) {
+    error.textContent = '';
+    return false;
+  }
+
+  const hash = await hashCode(code);
+  if (hash === VALID_HASH) {
+    // Store access in sessionStorage so they don't re-enter during this browser session
+    sessionStorage.setItem('prd_access', 'granted');
+    window.location.href = 'newsletter.html';
+  } else {
+    input.classList.add('error');
+    error.textContent = 'Incorrect code';
+    setTimeout(() => input.classList.remove('error'), 400);
+    input.value = '';
+    input.focus();
+  }
+  return false;
+}
+
+// If already authenticated this session, go straight to newsletter
+if (sessionStorage.getItem('prd_access') === 'granted') {
+  window.location.href = 'newsletter.html';
+}
+</script>
+</body>
+</html>

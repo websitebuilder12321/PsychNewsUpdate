@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>if(sessionStorage.getItem('prd_access')!=='granted'){window.location.href='index.html';}</script>
+<title>Psych Research Daily — Monday, February 16, 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#f5f5f7;color:#1d1d1f;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a365d 0%,#2d5a8e 50%,#3a7ec2 100%);color:#fff;padding:40px 0 10px;text-align:center;border-bottom:4px solid #f0b429}
+.header h1{font-size:2.2em;font-weight:700;letter-spacing:-.5px;margin-bottom:8px}
+.header .subtitle{font-size:1.05em;opacity:.85}
+.header .date{font-size:.9em;opacity:.7;margin-top:6px}
+.disorder-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:18px 20px 20px;background:linear-gradient(135deg,#1a365d 0%,#2d5a8e 50%,#3a7ec2 100%)}
+.disorder-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:rgba(255,255,255,0.15);color:#fff;border-radius:20px;text-decoration:none;font-size:.92em;font-weight:600;transition:background .2s;backdrop-filter:blur(4px)}
+.disorder-pill:hover{background:rgba(255,255,255,0.3)}
+.disorder-count{background:rgba(255,255,255,0.25);padding:1px 8px;border-radius:10px;font-size:.8em;font-weight:700}
+.container{max-width:820px;margin:0 auto;padding:30px 20px}
+.toc{background:#fff;border-radius:12px;padding:24px 30px;margin-bottom:30px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.toc h2{font-size:1.1em;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.toc ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toc a{color:#2d5a8e;text-decoration:none;font-weight:500;font-size:.95em}
+.toc a:hover{text-decoration:underline}
+.section{background:#fff;border-radius:12px;padding:28px 30px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:22px;padding-bottom:12px;border-bottom:2px solid #e5e7eb}
+.section-icon{font-size:1.4em}
+.section-title{font-size:1.3em;font-weight:700;color:#1a365d}
+.article-card{padding:18px 0;border-bottom:1px solid #f0f0f0}
+.article-card:last-child{border-bottom:none;padding-bottom:0}
+.article-title{font-size:1.05em;font-weight:600;color:#1d1d1f;margin-bottom:6px;line-height:1.4}
+.article-title a{color:#1d1d1f;text-decoration:none}
+.article-title a:hover{color:#2d5a8e;text-decoration:underline}
+.article-meta{font-size:.85em;color:#6b7280;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.journal-name{font-style:italic;color:#4b5563}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75em;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.badge-cme{background:#fef3c7;color:#92400e}
+.badge-trial{background:#dbeafe;color:#1e40af}
+.badge-review{background:#ede9fe;color:#5b21b6}
+.badge-guideline{background:#d1fae5;color:#065f46}
+.badge-case{background:#fce7f3;color:#9d174d}
+.article-summary{font-size:.93em;color:#374151;line-height:1.65;margin-top:8px}
+.clinical-impl{font-size:.9em;color:#065f46;background:#ecfdf5;padding:10px 14px;border-radius:6px;margin-top:8px;border-left:3px solid #10b981;line-height:1.6}
+.clinical-impl strong{color:#047857;font-weight:600}
+.article-link{display:inline-block;margin-top:8px;color:#2d5a8e;text-decoration:none;font-size:.88em;font-weight:500}
+.article-link:hover{text-decoration:underline}
+.fda-alert{padding:14px 18px;background:#fff7ed;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;margin-bottom:12px}
+.fda-alert:last-child{margin-bottom:0}
+.fda-alert-title{font-weight:600;color:#92400e;font-size:.95em;margin-bottom:4px}
+.fda-alert-title a{color:#92400e;text-decoration:none}
+.fda-alert-desc{font-size:.88em;color:#78350f}
+.quick-read{padding:10px 0;border-bottom:1px solid #f0f0f0}
+.quick-read:last-child{border-bottom:none}
+.quick-read a{color:#1d1d1f;text-decoration:none;font-size:.93em}
+.quick-read a:hover{color:#2d5a8e;text-decoration:underline}
+.quick-read .journal-name{font-size:.82em}
+.empty-section{color:#9ca3af;font-style:italic;font-size:.93em;padding:10px 0}
+.footer{text-align:center;padding:30px;color:#9ca3af;font-size:.85em}
+.footer a{color:#6b7280}
+.stats{background:#eef2ff;border-radius:10px;padding:16px 24px;margin-bottom:24px;text-align:center;font-size:.95em;color:#4338ca}
+@media(max-width:600px){.disorder-nav{gap:6px;padding:12px 10px}.disorder-pill{padding:6px 12px;font-size:.82em}.toc ul{grid-template-columns:1fr}.header h1{font-size:1.6em}.container{padding:16px 12px}.section{padding:20px 16px}}
+</style></head><body>
+<div class="header">
+  <h1>Psych Research Daily</h1>
+  <div class="subtitle">Curated Psychiatric Research &amp; Clinical Updates</div>
+  <div class="date">Monday, February 16, 2026 &mdash; Generated for Jacob Krasner, PA-C</div>
+</div>
+<div class="disorder-nav">
+  <a href="#disorder-depression" class="disorder-pill">Depression <span class="disorder-count">11</span></a>
+<a href="#disorder-anxiety" class="disorder-pill">Anxiety <span class="disorder-count">5</span></a>
+<a href="#disorder-adhd" class="disorder-pill">ADHD <span class="disorder-count">1</span></a>
+<a href="#disorder-ptsd" class="disorder-pill">PTSD <span class="disorder-count">3</span></a>
+<a href="#disorder-bipolar" class="disorder-pill">Bipolar <span class="disorder-count">1</span></a>
+<a href="#disorder-schizophrenia" class="disorder-pill">Schizophrenia <span class="disorder-count">10</span></a>
+<a href="#disorder-ocd" class="disorder-pill">OCD <span class="disorder-count">6</span></a>
+
+</div>
+<div class="container">
+  
+  <div class="stats">21 articles found &bull; 17 CME-relevant &bull; 3 FDA alerts</div>
+  <div class="toc"><h2>In This Issue</h2><ul>
+    <li><a href="#disorder-depression">Depression</a></li>
+    <li><a href="#disorder-anxiety">Anxiety</a></li>
+    <li><a href="#disorder-adhd">ADHD</a></li>
+    <li><a href="#disorder-ptsd">PTSD</a></li>
+    <li><a href="#disorder-bipolar">Bipolar</a></li>
+    <li><a href="#disorder-schizophrenia">Schizophrenia</a></li>
+    <li><a href="#disorder-ocd">OCD</a></li>
+    <li><a href="#current-meds">&#128138; Current Meds (3)</a></li>
+    <li><a href="#novel-treatments">&#129514; Novel Treatments (5)</a></li>
+    <li><a href="#lifestyle">&#127793; Lifestyle (3)</a></li>
+    <li><a href="#fda-watch">&#9888; FDA Watch (3)</a></li>
+    <li><a href="#guidelines">&#128203; Guidelines (2)</a></li>
+  </ul></div>
+<div class="section" id="disorder-depression">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">Depression</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2844388">A Ketogenic Diet for Treatment-Resistant Depression: A Randomized Clinical Trial</a></div>
+  <div class="article-meta">
+    <span class="journal-name">JAMA Psychiatry</span>
+    &bull; 2026 Feb 4 &bull; Gao M, Kirk M, Knight H, Lash E et al. <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Oxford researchers randomized 88 patients with treatment-resistant depression to either a ketogenic diet or a control diet for 6 weeks. Both groups improved, but the ketogenic diet group showed significantly greater depression improvement. The catch: while statistically significant, the effect size was modest, and the benefit didn&#x27;t clearly extend to secondary outcome measures. This is one of the first RCTs to test dietary intervention specifically in TRD, and it points toward metabolic pathways as a legitimate therapeutic target — but the authors caution that the clinical relevance is still uncertain.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This isn&#x27;t ready to be a standard recommendation, but it opens a conversation with patients who are treatment-resistant and interested in lifestyle approaches. The ketogenic diet may have adjunctive value for some TRD patients, but the modest effect size means it shouldn&#x27;t replace pharmacotherapy. Watch for larger confirmatory trials.</div>
+  <a class="article-link" href="https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2844388">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41191382/">Ketogenic Diets and Depression and Anxiety: A Systematic Review and Meta-Analysis</a></div>
+  <div class="article-meta">
+    <span class="journal-name">JAMA Psychiatry</span>
+    &bull; 2026 Jan 1 &bull; Janssen-Aguilar R, Vije T, Peera M et al. <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This systematic review and meta-analysis pooled available evidence on whether ketogenic diets improve depression and anxiety symptoms. The key finding: depressive symptoms did improve with ketogenic diets, particularly in studies that confirmed participants had actually achieved ketosis through biochemical verification. However, evidence for anxiety symptom improvement remained inconclusive. The analysis highlights an important methodological lesson — studies that didn&#x27;t verify ketosis showed weaker effects, suggesting that actually being in ketosis (not just attempting the diet) is what matters therapeutically.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> If considering dietary interventions for depressed patients, the evidence favors ketogenic approaches over other dietary modifications for mood — but only if patients can maintain true ketosis. Verifying ketone levels (via blood or urine) would be essential for any clinical application. The lack of anxiety benefit means this shouldn&#x27;t be positioned as a broad-spectrum lifestyle intervention for psychiatric symptoms.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/41191382/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/toc/ajp/current">Brain Neuroplasticity Mechanisms in Psychiatric Illnesses and in the Development of Novel Treatments</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; AJP Editorial Board <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This comprehensive review examines how neuroplasticity — the brain&#x27;s ability to rewire synaptic connections — underpins both the development of psychiatric disorders and the mechanisms through which treatments work. The authors argue that impaired neuroplasticity is a common thread linking depression, schizophrenia, PTSD, and anxiety disorders, and that successful treatments (from SSRIs to psychotherapy to ketamine) all share the ability to restore or enhance neural plasticity. The piece synthesizes evidence from molecular, cellular, and circuit-level studies to build a unified framework for understanding psychiatric treatment mechanisms.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This review provides a useful conceptual framework for understanding why diverse treatments can work for the same condition. It reinforces that treatments enhancing neuroplasticity — including exercise, psychotherapy, and pharmacotherapy — may have synergistic effects when combined, supporting multi-modal treatment approaches.</div>
+  <a class="article-link" href="https://psychiatryonline.org/toc/ajp/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/40830579/">Association Between Polygenic Risk for Major Depression and Brain Structure in a Mega-Analysis of 50,975 Participants</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Molecular Psychiatry</span>
+    &bull; 2026 Feb &bull; ENIGMA MDD Working Group 
+  </div>
+  <div class="article-summary">The ENIGMA consortium pooled brain imaging and genetic data from nearly 51,000 participants across 11 studies to ask a straightforward question: does having a higher genetic risk for depression show up in brain structure? This is one of the largest neuroimaging genetics studies in psychiatry to date. While the specific structural correlates are still being characterized, the sheer sample size gives this analysis statistical power that previous smaller studies lacked, making it a landmark contribution to understanding the biological basis of depression risk.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> While not immediately practice-changing, this study strengthens the biological basis for depression as a brain disorder and may eventually support polygenic risk scores as part of risk stratification. It reinforces the message to patients and families that depression has measurable neurobiological underpinnings.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/40830579/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrist.com/jcp/postmarketing-transcranial-magnetic-stimulation-maude-database-adverse-events-advancements/">Postmarketing Safety of Transcranial Magnetic Stimulation: A 10-Year MAUDE Database Analysis of Adverse Events and Technological Advancements</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2026 Feb 11 &bull; JCP Research Team <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This study pulled a decade&#x27;s worth of adverse event reports from the FDA&#x27;s MAUDE database for all TMS devices — the first device-agnostic safety analysis of its kind. After deduplication, 200 unique adverse event reports were analyzed. The study characterizes patterns of reported symptoms, differences between manufacturers, device-related issues, and reporting delays. Given TMS&#x27;s expanding use beyond depression (OCD, smoking cessation, PTSD), this real-world safety data fills an important postmarketing surveillance gap.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> The relatively small number of unique adverse events (200 over 10 years) across all TMS devices is reassuring for clinicians recommending TMS. However, be aware of reporting delays and manufacturer-specific variations when counseling patients. This data supports TMS&#x27;s favorable safety profile but underscores the need for ongoing vigilance as indications expand.</div>
+  <a class="article-link" href="https://www.psychiatrist.com/jcp/postmarketing-transcranial-magnetic-stimulation-maude-database-adverse-events-advancements/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/40875536/">Artificial Intelligence in Depression-Medication Enhancement (AID-ME): A Cluster Randomized Trial of a Deep-Learning-Enabled Clinical Decision Support System</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2025 Aug &bull; Benrimoh D et al. <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Can an AI tool help clinicians pick the right antidepressant the first time? This cluster-randomized trial tested the Aifred Clinical Decision Support System, which uses deep learning to predict medication remission probabilities based on individual patient data. Clinicians randomized to the AI-assisted arm saw significantly improved remission rates and faster improvement compared to those using standard guidelines and questionnaires alone. The trial was conducted across diverse US and Canadian settings but was terminated early due to COVID-related funding shortfalls.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> While AI-guided prescribing isn&#x27;t mainstream yet, this is one of the first rigorous RCTs to show it can actually improve depression outcomes in real clinical settings. Keep an eye on tools like this — personalized treatment prediction may become a standard part of prescribing workflows within the next few years, particularly for patients who haven&#x27;t responded to initial treatment attempts.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/40875536/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">New Phase 3 Data: CAPLYTA (Lumateperone) Achieves Greater Remission in Major Depressive Disorder</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Press Release / Clinical Data</span>
+    &bull; 2026 Jan 16 &bull; Johnson &amp; Johnson / Intra-Cellular Therapies <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">New analysis of Phase 3 data shows that lumateperone (CAPLYTA) 42mg added to an antidepressant produced significantly higher remission rates in adults with MDD compared to placebo plus antidepressant at 6 weeks, with benefits sustained through a 6-month open-label extension. CAPLYTA is an atypical antipsychotic with a unique pharmacology — it simultaneously modulates serotonin, dopamine, and glutamate signaling. It&#x27;s already FDA-approved for adjunctive MDD treatment, schizophrenia, and bipolar depression.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> If you have MDD patients not reaching remission on their current antidepressant, this additional remission data strengthens the case for considering CAPLYTA as an adjunctive option. Its relatively favorable metabolic profile compared to other atypical antipsychotics makes it appealing, though somnolence and sedation remain common side effects to discuss with patients.</div>
+  <a class="article-link" href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychedelicalpha.com/news/2025-year-in-review-10-standout-stories-in-psychedelics">BPL-003 (Intranasal Mebufotenin) Shows Rapid, Durable Antidepressant Effects in Treatment-Resistant Depression: Phase 2b Results</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Clinical Trial Results</span>
+    &bull; 2026 Jan &bull; atai Life Sciences / Beckley Psytech <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">This Phase 2b trial — the largest controlled study of mebufotenin (a tryptamine psychedelic derived from toad secretions, also known as 5-MeO-DMT) — tested a single intranasal dose in treatment-resistant depression across 38 sites in 6 countries. The results were striking: BPL-003 produced rapid, robust, and durable antidepressant effects after just one dose. Unlike psilocybin sessions that take 6-8 hours, mebufotenin&#x27;s effects are brief (15-45 minutes), making it more practical for clinical settings.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is still investigational, but the practical advantages of mebufotenin over other psychedelic-assisted therapies (very short session duration, intranasal administration) could make it more scalable if approved. Watch for Phase 3 data. For now, patients asking about psychedelic treatments should know the evidence base is growing rapidly with multiple compounds in late-stage trials.</div>
+  <a class="article-link" href="https://psychedelicalpha.com/news/2025-year-in-review-10-standout-stories-in-psychedelics">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">FDA Approves ProlivRx: First At-Home Neuromodulation Therapy for Treatment-Resistant Depression</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Approval / MOOD Trial</span>
+    &bull; 2026 Jan &bull; Neurolief Inc. <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">The FDA approved ProlivRx, the first prescription at-home brain neuromodulation device for adults with MDD who haven&#x27;t responded to at least one antidepressant. The device uses external Combined Occipital and Trigeminal Afferent Stimulation (eCOT-AS) — a novel approach that stimulates multiple nerve pathways simultaneously. The approval was based on the MOOD trial, a randomized, controlled, multicenter study showing ProlivRx significantly improved remission rates with a favorable safety profile. Unlike TMS, which requires clinic visits, ProlivRx is used at home under physician direction.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is a genuinely new treatment modality for your TRD patients. The at-home format removes the logistic barrier of daily clinic visits that limits TMS access. It&#x27;s worth learning more about ProlivRx&#x27;s specific protocol and candidacy criteria — it could be a practical option for treatment-resistant patients who can&#x27;t access TMS or don&#x27;t want to try ketamine/esketamine.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.thelancet.com/journals/lanpsy/issue/current">ImPuls: Cost-Effective Group Exercise Intervention Improves Mental Health Across Diagnoses in Outpatient Care</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Lancet Psychiatry</span>
+    &bull; 2026 Jan 27 &bull; Lancet Psychiatry Research Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">The ImPuls program — a structured, group-based exercise intervention designed to work across multiple psychiatric diagnoses — was evaluated as an add-on to treatment-as-usual in outpatient psychiatric care. The results showed it was both clinically effective at improving mental health outcomes and cost-effective compared to standard care alone. What makes ImPuls notable is its transdiagnostic design: rather than being tailored to depression or anxiety specifically, it works across the diagnostic spectrum, making it practical for mixed outpatient settings where patients carry varied diagnoses.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is the kind of evidence needed to justify exercise programming in outpatient psych settings. If your practice or affiliated clinic is considering adding structured exercise groups, the ImPuls model provides an evidence-based, cost-effective framework. The transdiagnostic approach means you don&#x27;t need diagnosis-specific programs — one well-designed exercise group can benefit patients across your caseload.</div>
+  <a class="article-link" href="https://www.thelancet.com/journals/lanpsy/issue/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/fda-recap-january-2026">FDA Removes Suicidal Ideation Warning from GLP-1 Receptor Agonist Labels</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Drug Safety Communication</span>
+    &bull; 2026 Jan 13 &bull; FDA Safety Communication <span class="badge badge-cme">CME</span> <span class="badge badge-guideline">Guideline</span>
+  </div>
+  <div class="article-summary">After a comprehensive review including meta-analyses of over 100,000 patients and large real-world studies, the FDA concluded there is no evidence linking GLP-1 receptor agonists (liraglutide/Saxenda, semaglutide/Wegovy, tirzepatide/Zepbound) to increased risk of suicidal ideation, self-harm, or other psychiatric adverse events. The agency has requested manufacturers remove the suicidal ideation/behavior risk language from product labeling. This resolves a concern that had been flagged when early adverse event reports trickled in as GLP-1 use exploded for weight management.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is reassuring for the many psychiatric patients on GLP-1 agonists for weight management — especially those on antipsychotics with metabolic side effects. You can counsel patients that the FDA has thoroughly investigated and cleared these medications of psychiatric risk. No need to avoid GLP-1 agonists in patients with mood disorders or suicidal ideation history based on this concern.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/fda-recap-january-2026">Read full article &rarr;</a>
+</div>
+</div>
+<div class="section" id="disorder-anxiety">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">Anxiety</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41191382/">Ketogenic Diets and Depression and Anxiety: A Systematic Review and Meta-Analysis</a></div>
+  <div class="article-meta">
+    <span class="journal-name">JAMA Psychiatry</span>
+    &bull; 2026 Jan 1 &bull; Janssen-Aguilar R, Vije T, Peera M et al. <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This systematic review and meta-analysis pooled available evidence on whether ketogenic diets improve depression and anxiety symptoms. The key finding: depressive symptoms did improve with ketogenic diets, particularly in studies that confirmed participants had actually achieved ketosis through biochemical verification. However, evidence for anxiety symptom improvement remained inconclusive. The analysis highlights an important methodological lesson — studies that didn&#x27;t verify ketosis showed weaker effects, suggesting that actually being in ketosis (not just attempting the diet) is what matters therapeutically.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> If considering dietary interventions for depressed patients, the evidence favors ketogenic approaches over other dietary modifications for mood — but only if patients can maintain true ketosis. Verifying ketone levels (via blood or urine) would be essential for any clinical application. The lack of anxiety benefit means this shouldn&#x27;t be positioned as a broad-spectrum lifestyle intervention for psychiatric symptoms.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/41191382/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/toc/ajp/current">Brain Neuroplasticity Mechanisms in Psychiatric Illnesses and in the Development of Novel Treatments</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; AJP Editorial Board <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This comprehensive review examines how neuroplasticity — the brain&#x27;s ability to rewire synaptic connections — underpins both the development of psychiatric disorders and the mechanisms through which treatments work. The authors argue that impaired neuroplasticity is a common thread linking depression, schizophrenia, PTSD, and anxiety disorders, and that successful treatments (from SSRIs to psychotherapy to ketamine) all share the ability to restore or enhance neural plasticity. The piece synthesizes evidence from molecular, cellular, and circuit-level studies to build a unified framework for understanding psychiatric treatment mechanisms.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This review provides a useful conceptual framework for understanding why diverse treatments can work for the same condition. It reinforces that treatments enhancing neuroplasticity — including exercise, psychotherapy, and pharmacotherapy — may have synergistic effects when combined, supporting multi-modal treatment approaches.</div>
+  <a class="article-link" href="https://psychiatryonline.org/toc/ajp/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://journals.lww.com/psychopharmacology/abstract/9900/evaluating_the_effectiveness_of_cyproheptadine_on.513.aspx">Evaluating the Effectiveness of Cyproheptadine on Acute Neuroleptic-Induced Akathisia: A Randomized Controlled Trial</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Journal of Clinical Psychopharmacology</span>
+    &bull; 2026 Feb &bull; Journal of Clinical Psychopharmacology Research Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Akathisia remains one of the most distressing antipsychotic side effects, and current treatments (propranolol, benzodiazepines) don&#x27;t always work. This double-blind RCT tested cyproheptadine — a serotonin antagonist and antihistamine already available as a generic — against placebo for acute neuroleptic-induced akathisia. Cyproheptadine significantly reduced akathisia symptoms compared to placebo, suggesting its antiserotonergic properties may counteract the serotonin-mediated component of antipsychotic-induced restlessness.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This gives you another tool in the akathisia management toolbox, especially when propranolol is contraindicated (asthma, bradycardia) or benzodiazepines are undesirable. Cyproheptadine is inexpensive, widely available, and generally well-tolerated. Consider it as an alternative or adjunct for patients struggling with akathisia who haven&#x27;t responded to standard approaches.</div>
+  <a class="article-link" href="https://journals.lww.com/psychopharmacology/abstract/9900/evaluating_the_effectiveness_of_cyproheptadine_on.513.aspx">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.thelancet.com/journals/lanpsy/issue/current">ImPuls: Cost-Effective Group Exercise Intervention Improves Mental Health Across Diagnoses in Outpatient Care</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Lancet Psychiatry</span>
+    &bull; 2026 Jan 27 &bull; Lancet Psychiatry Research Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">The ImPuls program — a structured, group-based exercise intervention designed to work across multiple psychiatric diagnoses — was evaluated as an add-on to treatment-as-usual in outpatient psychiatric care. The results showed it was both clinically effective at improving mental health outcomes and cost-effective compared to standard care alone. What makes ImPuls notable is its transdiagnostic design: rather than being tailored to depression or anxiety specifically, it works across the diagnostic spectrum, making it practical for mixed outpatient settings where patients carry varied diagnoses.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is the kind of evidence needed to justify exercise programming in outpatient psych settings. If your practice or affiliated clinic is considering adding structured exercise groups, the ImPuls model provides an evidence-based, cost-effective framework. The transdiagnostic approach means you don&#x27;t need diagnosis-specific programs — one well-designed exercise group can benefit patients across your caseload.</div>
+  <a class="article-link" href="https://www.thelancet.com/journals/lanpsy/issue/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Centanafadine NDA Accepted for Priority Review for ADHD in Children, Adolescents, and Adults</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Regulatory Update</span>
+    &bull; 2026 Jan &bull; FDA / Otsuka <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">The FDA accepted for priority review the New Drug Application for centanafadine, a novel once-daily extended-release norepinephrine, dopamine, and serotonin reuptake inhibitor (NDSRI) for ADHD across all age groups. If approved, centanafadine would be the first new ADHD medication mechanism in decades — unlike existing stimulants (which primarily boost dopamine/norepinephrine) or atomoxetine (norepinephrine only), centanafadine adds serotonin reuptake inhibition, potentially offering ADHD benefit with anxiolytic and mood-stabilizing properties.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This could be a significant addition to the ADHD toolbox, particularly for patients with comorbid anxiety or mood symptoms who don&#x27;t tolerate stimulants well. Priority review means a decision is expected within 6-8 months. Start thinking about which patients in your practice might benefit from a triple reuptake inhibitor approach if this gains approval.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Read full article &rarr;</a>
+</div>
+</div>
+<div class="section" id="disorder-adhd">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">ADHD</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Centanafadine NDA Accepted for Priority Review for ADHD in Children, Adolescents, and Adults</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Regulatory Update</span>
+    &bull; 2026 Jan &bull; FDA / Otsuka <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">The FDA accepted for priority review the New Drug Application for centanafadine, a novel once-daily extended-release norepinephrine, dopamine, and serotonin reuptake inhibitor (NDSRI) for ADHD across all age groups. If approved, centanafadine would be the first new ADHD medication mechanism in decades — unlike existing stimulants (which primarily boost dopamine/norepinephrine) or atomoxetine (norepinephrine only), centanafadine adds serotonin reuptake inhibition, potentially offering ADHD benefit with anxiolytic and mood-stabilizing properties.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This could be a significant addition to the ADHD toolbox, particularly for patients with comorbid anxiety or mood symptoms who don&#x27;t tolerate stimulants well. Priority review means a decision is expected within 6-8 months. Start thinking about which patients in your practice might benefit from a triple reuptake inhibitor approach if this gains approval.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Read full article &rarr;</a>
+</div>
+</div>
+<div class="section" id="disorder-ptsd">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">PTSD</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/toc/ajp/current">Brain Neuroplasticity Mechanisms in Psychiatric Illnesses and in the Development of Novel Treatments</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; AJP Editorial Board <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This comprehensive review examines how neuroplasticity — the brain&#x27;s ability to rewire synaptic connections — underpins both the development of psychiatric disorders and the mechanisms through which treatments work. The authors argue that impaired neuroplasticity is a common thread linking depression, schizophrenia, PTSD, and anxiety disorders, and that successful treatments (from SSRIs to psychotherapy to ketamine) all share the ability to restore or enhance neural plasticity. The piece synthesizes evidence from molecular, cellular, and circuit-level studies to build a unified framework for understanding psychiatric treatment mechanisms.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This review provides a useful conceptual framework for understanding why diverse treatments can work for the same condition. It reinforces that treatments enhancing neuroplasticity — including exercise, psychotherapy, and pharmacotherapy — may have synergistic effects when combined, supporting multi-modal treatment approaches.</div>
+  <a class="article-link" href="https://psychiatryonline.org/toc/ajp/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrist.com/jcp/postmarketing-transcranial-magnetic-stimulation-maude-database-adverse-events-advancements/">Postmarketing Safety of Transcranial Magnetic Stimulation: A 10-Year MAUDE Database Analysis of Adverse Events and Technological Advancements</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2026 Feb 11 &bull; JCP Research Team <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This study pulled a decade&#x27;s worth of adverse event reports from the FDA&#x27;s MAUDE database for all TMS devices — the first device-agnostic safety analysis of its kind. After deduplication, 200 unique adverse event reports were analyzed. The study characterizes patterns of reported symptoms, differences between manufacturers, device-related issues, and reporting delays. Given TMS&#x27;s expanding use beyond depression (OCD, smoking cessation, PTSD), this real-world safety data fills an important postmarketing surveillance gap.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> The relatively small number of unique adverse events (200 over 10 years) across all TMS devices is reassuring for clinicians recommending TMS. However, be aware of reporting delays and manufacturer-specific variations when counseling patients. This data supports TMS&#x27;s favorable safety profile but underscores the need for ongoing vigilance as indications expand.</div>
+  <a class="article-link" href="https://www.psychiatrist.com/jcp/postmarketing-transcranial-magnetic-stimulation-maude-database-adverse-events-advancements/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.sciencedaily.com/releases/2025/11/251105050730.htm">Mindfulness Meditation Side Effects: Large Study Identifies Risk Factors for Adverse Experiences</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Scientific Reports / Nature</span>
+    &bull; 2025 Nov &bull; Van Dam N et al. <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">A large study found that mindfulness meditation, while broadly beneficial, can cause adverse experiences in certain individuals. People who had active mental health symptoms or psychological distress within 30 days before meditating were significantly more likely to report negative effects. Intensive residential retreats with extended silent meditation periods were also a risk factor for functional impairment. Researcher Nicholas Van Dam emphasized that the field needs better informed consent practices so participants understand meditation isn&#x27;t universally benign.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> When recommending mindfulness to patients, consider their current symptom severity. Patients with active psychosis, severe dissociation, or acute PTSD symptoms may not be good candidates for intensive meditation practices. Recommend graduated approaches — start with brief, guided sessions rather than jumping into silent retreats. This data supports individualized recommendations rather than blanket endorsement of mindfulness for all psychiatric patients.</div>
+  <a class="article-link" href="https://www.sciencedaily.com/releases/2025/11/251105050730.htm">Read full article &rarr;</a>
+</div>
+</div>
+<div class="section" id="disorder-bipolar">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">Bipolar</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">New Phase 3 Data: CAPLYTA (Lumateperone) Achieves Greater Remission in Major Depressive Disorder</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Press Release / Clinical Data</span>
+    &bull; 2026 Jan 16 &bull; Johnson &amp; Johnson / Intra-Cellular Therapies <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">New analysis of Phase 3 data shows that lumateperone (CAPLYTA) 42mg added to an antidepressant produced significantly higher remission rates in adults with MDD compared to placebo plus antidepressant at 6 weeks, with benefits sustained through a 6-month open-label extension. CAPLYTA is an atypical antipsychotic with a unique pharmacology — it simultaneously modulates serotonin, dopamine, and glutamate signaling. It&#x27;s already FDA-approved for adjunctive MDD treatment, schizophrenia, and bipolar depression.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> If you have MDD patients not reaching remission on their current antidepressant, this additional remission data strengthens the case for considering CAPLYTA as an adjunctive option. Its relatively favorable metabolic profile compared to other atypical antipsychotics makes it appealing, though somnolence and sedation remain common side effects to discuss with patients.</div>
+  <a class="article-link" href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">Read full article &rarr;</a>
+</div>
+</div>
+<div class="section" id="disorder-schizophrenia">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">Schizophrenia</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/doi/10.1176/appi.ajp.20250111">Efficacy and Tolerability of Seven Antipsychotic Drugs in Acutely Ill Patients With Schizophrenia: A Randomized, Multicenter, Assessor-Blinded Trial (SINO)</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; Zhao G, Sun Y, Zhang Y et al. <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">This is the largest head-to-head antipsychotic comparison trial ever conducted — 3,067 acutely ill inpatients with schizophrenia across 32 hospitals were randomized to one of seven antipsychotics (olanzapine, risperidone, quetiapine, aripiprazole, ziprasidone, perphenazine, or haloperidol) for 6 weeks. Olanzapine and risperidone came out on top, showing significantly greater PANSS score improvement than aripiprazole, ziprasidone, and quetiapine, with differences of 5.5–7.9 percentage points. Notably, haloperidol and perphenazine performed comparably to olanzapine and risperidone on efficacy, though their side effect profiles differed. The study included a young population (18–45) with equal sex distribution, filling critical gaps in comparative antipsychotic data.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> When treating acute schizophrenia exacerbations, this trial supports olanzapine and risperidone as first choices for symptom reduction. However, the comparable efficacy of perphenazine and haloperidol is noteworthy for cost-conscious settings — the choice should be individualized based on each patient&#x27;s metabolic risk, EPS susceptibility, and prior response history.</div>
+  <a class="article-link" href="https://psychiatryonline.org/doi/10.1176/appi.ajp.20250111">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/toc/ajp/current">Brain Neuroplasticity Mechanisms in Psychiatric Illnesses and in the Development of Novel Treatments</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; AJP Editorial Board <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This comprehensive review examines how neuroplasticity — the brain&#x27;s ability to rewire synaptic connections — underpins both the development of psychiatric disorders and the mechanisms through which treatments work. The authors argue that impaired neuroplasticity is a common thread linking depression, schizophrenia, PTSD, and anxiety disorders, and that successful treatments (from SSRIs to psychotherapy to ketamine) all share the ability to restore or enhance neural plasticity. The piece synthesizes evidence from molecular, cellular, and circuit-level studies to build a unified framework for understanding psychiatric treatment mechanisms.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This review provides a useful conceptual framework for understanding why diverse treatments can work for the same condition. It reinforces that treatments enhancing neuroplasticity — including exercise, psychotherapy, and pharmacotherapy — may have synergistic effects when combined, supporting multi-modal treatment approaches.</div>
+  <a class="article-link" href="https://psychiatryonline.org/toc/ajp/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/toc/ajp/current">Doxycycline Use in Adolescent Psychiatric Patients and Risk of Schizophrenia: An Emulated Target Trial</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; Kelleher I et al. <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">Using an emulated target trial design, researchers examined whether doxycycline exposure in adolescent psychiatric patients was associated with altered risk of developing schizophrenia. Doxycycline has known anti-inflammatory and neuroprotective properties beyond its antibiotic effects, and prior observational data suggested it might reduce psychosis risk. This study leveraged large clinical databases to test that hypothesis more rigorously, applying modern causal inference methods to reduce the confounding that plagues traditional observational studies.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is primarily a hypothesis-generating study at this stage — don&#x27;t start prescribing doxycycline for psychosis prevention. However, it adds to growing evidence that neuroinflammation plays a role in schizophrenia pathogenesis and that anti-inflammatory agents deserve continued investigation as potential preventive strategies in high-risk populations.</div>
+  <a class="article-link" href="https://psychiatryonline.org/toc/ajp/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrist.com/jcp/latency-lai-antipsychotic-initiation-hospitalization-first-episode-schizophrenia/">Latency to Long-Acting Injectable Antipsychotic Initiation and Psychiatric Hospitalization in First-Episode Schizophrenia</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2026 Feb &bull; Korean HIRA Database Study Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Using Korea&#x27;s national insurance claims database, researchers tracked 6,380 first-episode schizophrenia patients receiving LAI antipsychotics, grouping them by how long after diagnosis they started LAIs (&lt;1 year to &gt;5 years). A paradoxical finding emerged: while patients who started LAIs later showed better treatment adherence (possibly because they were more engaged with care by then), those who started LAIs early had significantly lower total hospitalization burden. This is one of the largest real-world studies on LAI timing in first-episode schizophrenia.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This supports the growing push to offer LAIs earlier in the illness course rather than reserving them for treatment failure. When you have a first-episode patient who&#x27;s stabilized, consider having the LAI conversation sooner rather than later — the hospitalization reduction benefit appears strongest with early initiation, even if patients initially seem adherent to oral medications.</div>
+  <a class="article-link" href="https://www.psychiatrist.com/jcp/latency-lai-antipsychotic-initiation-hospitalization-first-episode-schizophrenia/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://journals.lww.com/psychopharmacology/abstract/9900/evaluating_the_effectiveness_of_cyproheptadine_on.513.aspx">Evaluating the Effectiveness of Cyproheptadine on Acute Neuroleptic-Induced Akathisia: A Randomized Controlled Trial</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Journal of Clinical Psychopharmacology</span>
+    &bull; 2026 Feb &bull; Journal of Clinical Psychopharmacology Research Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Akathisia remains one of the most distressing antipsychotic side effects, and current treatments (propranolol, benzodiazepines) don&#x27;t always work. This double-blind RCT tested cyproheptadine — a serotonin antagonist and antihistamine already available as a generic — against placebo for acute neuroleptic-induced akathisia. Cyproheptadine significantly reduced akathisia symptoms compared to placebo, suggesting its antiserotonergic properties may counteract the serotonin-mediated component of antipsychotic-induced restlessness.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This gives you another tool in the akathisia management toolbox, especially when propranolol is contraindicated (asthma, bradycardia) or benzodiazepines are undesirable. Cyproheptadine is inexpensive, widely available, and generally well-tolerated. Consider it as an alternative or adjunct for patients struggling with akathisia who haven&#x27;t responded to standard approaches.</div>
+  <a class="article-link" href="https://journals.lww.com/psychopharmacology/abstract/9900/evaluating_the_effectiveness_of_cyproheptadine_on.513.aspx">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">New Phase 3 Data: CAPLYTA (Lumateperone) Achieves Greater Remission in Major Depressive Disorder</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Press Release / Clinical Data</span>
+    &bull; 2026 Jan 16 &bull; Johnson &amp; Johnson / Intra-Cellular Therapies <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">New analysis of Phase 3 data shows that lumateperone (CAPLYTA) 42mg added to an antidepressant produced significantly higher remission rates in adults with MDD compared to placebo plus antidepressant at 6 weeks, with benefits sustained through a 6-month open-label extension. CAPLYTA is an atypical antipsychotic with a unique pharmacology — it simultaneously modulates serotonin, dopamine, and glutamate signaling. It&#x27;s already FDA-approved for adjunctive MDD treatment, schizophrenia, and bipolar depression.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> If you have MDD patients not reaching remission on their current antidepressant, this additional remission data strengthens the case for considering CAPLYTA as an adjunctive option. Its relatively favorable metabolic profile compared to other atypical antipsychotics makes it appealing, though somnolence and sedation remain common side effects to discuss with patients.</div>
+  <a class="article-link" href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">Cobenfy (Xanomeline/Trospium) Fails Primary Endpoint as Adjunctive Treatment in Schizophrenia (ARISE Trial)</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Phase 3 Trial Results</span>
+    &bull; 2026 Feb &bull; Bristol-Myers Squibb <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">The much-anticipated ARISE Phase 3 trial tested Cobenfy (xanomeline/trospium) — the first muscarinic agonist-based antipsychotic, approved in 2024 as monotherapy for schizophrenia — as an add-on to atypical antipsychotics for patients with inadequately controlled symptoms. Unfortunately, adjunctive Cobenfy did not show a statistically significant difference from placebo. This is a setback for expanding Cobenfy&#x27;s use, though it remains approved and available as monotherapy where it has shown efficacy.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> Don&#x27;t write off Cobenfy based on this adjunctive failure — it still has a role as monotherapy for schizophrenia, particularly for patients who can&#x27;t tolerate dopamine D2-blocking agents. However, don&#x27;t expect it to work as an add-on to existing antipsychotics for partial responders. The mechanism of muscarinic agonism may not be complementary to dopamine blockade in the way that was hoped.</div>
+  <a class="article-link" href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">NTX-253 (Muscarinic M4 PAM) Enters Phase 1 for Schizophrenia</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Clinical Pipeline Update</span>
+    &bull; 2026 Jan &bull; Neurocrine Biosciences 
+  </div>
+  <div class="article-summary">A new muscarinic M4 positive allosteric modulator (PAM) has entered Phase 1 testing for schizophrenia in healthy volunteers. Unlike Cobenfy&#x27;s direct muscarinic agonism, NTX-253 works by enhancing the brain&#x27;s own acetylcholine signaling at M4 receptors specifically, potentially offering antipsychotic effects with fewer peripheral cholinergic side effects (the GI issues that Cobenfy&#x27;s trospium component is designed to counteract). Preclinical data showed antipsychotic-like activity.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is very early-stage (Phase 1), but it signals that the muscarinic approach to schizophrenia treatment has multiple avenues being explored simultaneously. If M4-selective modulation proves effective, it could offer a cleaner side effect profile than broad muscarinic agonism. Something to watch over the next 2-3 years as clinical data emerges.</div>
+  <a class="article-link" href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.sciencedaily.com/releases/2025/11/251105050730.htm">Mindfulness Meditation Side Effects: Large Study Identifies Risk Factors for Adverse Experiences</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Scientific Reports / Nature</span>
+    &bull; 2025 Nov &bull; Van Dam N et al. <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">A large study found that mindfulness meditation, while broadly beneficial, can cause adverse experiences in certain individuals. People who had active mental health symptoms or psychological distress within 30 days before meditating were significantly more likely to report negative effects. Intensive residential retreats with extended silent meditation periods were also a risk factor for functional impairment. Researcher Nicholas Van Dam emphasized that the field needs better informed consent practices so participants understand meditation isn&#x27;t universally benign.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> When recommending mindfulness to patients, consider their current symptom severity. Patients with active psychosis, severe dissociation, or acute PTSD symptoms may not be good candidates for intensive meditation practices. Recommend graduated approaches — start with brief, guided sessions rather than jumping into silent retreats. This data supports individualized recommendations rather than blanket endorsement of mindfulness for all psychiatric patients.</div>
+  <a class="article-link" href="https://www.sciencedaily.com/releases/2025/11/251105050730.htm">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/fda-recap-january-2026">FDA Removes Suicidal Ideation Warning from GLP-1 Receptor Agonist Labels</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Drug Safety Communication</span>
+    &bull; 2026 Jan 13 &bull; FDA Safety Communication <span class="badge badge-cme">CME</span> <span class="badge badge-guideline">Guideline</span>
+  </div>
+  <div class="article-summary">After a comprehensive review including meta-analyses of over 100,000 patients and large real-world studies, the FDA concluded there is no evidence linking GLP-1 receptor agonists (liraglutide/Saxenda, semaglutide/Wegovy, tirzepatide/Zepbound) to increased risk of suicidal ideation, self-harm, or other psychiatric adverse events. The agency has requested manufacturers remove the suicidal ideation/behavior risk language from product labeling. This resolves a concern that had been flagged when early adverse event reports trickled in as GLP-1 use exploded for weight management.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is reassuring for the many psychiatric patients on GLP-1 agonists for weight management — especially those on antipsychotics with metabolic side effects. You can counsel patients that the FDA has thoroughly investigated and cleared these medications of psychiatric risk. No need to avoid GLP-1 agonists in patients with mood disorders or suicidal ideation history based on this concern.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/fda-recap-january-2026">Read full article &rarr;</a>
+</div>
+</div>
+<div class="section" id="disorder-ocd">
+  <div class="section-header">
+    <span class="section-icon"></span>
+    <span class="section-title">OCD</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/doi/10.1176/appi.ajp.20250111">Efficacy and Tolerability of Seven Antipsychotic Drugs in Acutely Ill Patients With Schizophrenia: A Randomized, Multicenter, Assessor-Blinded Trial (SINO)</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; Zhao G, Sun Y, Zhang Y et al. <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">This is the largest head-to-head antipsychotic comparison trial ever conducted — 3,067 acutely ill inpatients with schizophrenia across 32 hospitals were randomized to one of seven antipsychotics (olanzapine, risperidone, quetiapine, aripiprazole, ziprasidone, perphenazine, or haloperidol) for 6 weeks. Olanzapine and risperidone came out on top, showing significantly greater PANSS score improvement than aripiprazole, ziprasidone, and quetiapine, with differences of 5.5–7.9 percentage points. Notably, haloperidol and perphenazine performed comparably to olanzapine and risperidone on efficacy, though their side effect profiles differed. The study included a young population (18–45) with equal sex distribution, filling critical gaps in comparative antipsychotic data.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> When treating acute schizophrenia exacerbations, this trial supports olanzapine and risperidone as first choices for symptom reduction. However, the comparable efficacy of perphenazine and haloperidol is noteworthy for cost-conscious settings — the choice should be individualized based on each patient&#x27;s metabolic risk, EPS susceptibility, and prior response history.</div>
+  <a class="article-link" href="https://psychiatryonline.org/doi/10.1176/appi.ajp.20250111">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychiatryonline.org/toc/ajp/current">Brain Neuroplasticity Mechanisms in Psychiatric Illnesses and in the Development of Novel Treatments</a></div>
+  <div class="article-meta">
+    <span class="journal-name">American Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; AJP Editorial Board <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This comprehensive review examines how neuroplasticity — the brain&#x27;s ability to rewire synaptic connections — underpins both the development of psychiatric disorders and the mechanisms through which treatments work. The authors argue that impaired neuroplasticity is a common thread linking depression, schizophrenia, PTSD, and anxiety disorders, and that successful treatments (from SSRIs to psychotherapy to ketamine) all share the ability to restore or enhance neural plasticity. The piece synthesizes evidence from molecular, cellular, and circuit-level studies to build a unified framework for understanding psychiatric treatment mechanisms.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This review provides a useful conceptual framework for understanding why diverse treatments can work for the same condition. It reinforces that treatments enhancing neuroplasticity — including exercise, psychotherapy, and pharmacotherapy — may have synergistic effects when combined, supporting multi-modal treatment approaches.</div>
+  <a class="article-link" href="https://psychiatryonline.org/toc/ajp/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/40830579/">Association Between Polygenic Risk for Major Depression and Brain Structure in a Mega-Analysis of 50,975 Participants</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Molecular Psychiatry</span>
+    &bull; 2026 Feb &bull; ENIGMA MDD Working Group 
+  </div>
+  <div class="article-summary">The ENIGMA consortium pooled brain imaging and genetic data from nearly 51,000 participants across 11 studies to ask a straightforward question: does having a higher genetic risk for depression show up in brain structure? This is one of the largest neuroimaging genetics studies in psychiatry to date. While the specific structural correlates are still being characterized, the sheer sample size gives this analysis statistical power that previous smaller studies lacked, making it a landmark contribution to understanding the biological basis of depression risk.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> While not immediately practice-changing, this study strengthens the biological basis for depression as a brain disorder and may eventually support polygenic risk scores as part of risk stratification. It reinforces the message to patients and families that depression has measurable neurobiological underpinnings.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/40830579/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrist.com/jcp/postmarketing-transcranial-magnetic-stimulation-maude-database-adverse-events-advancements/">Postmarketing Safety of Transcranial Magnetic Stimulation: A 10-Year MAUDE Database Analysis of Adverse Events and Technological Advancements</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2026 Feb 11 &bull; JCP Research Team <span class="badge badge-cme">CME</span> <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">This study pulled a decade&#x27;s worth of adverse event reports from the FDA&#x27;s MAUDE database for all TMS devices — the first device-agnostic safety analysis of its kind. After deduplication, 200 unique adverse event reports were analyzed. The study characterizes patterns of reported symptoms, differences between manufacturers, device-related issues, and reporting delays. Given TMS&#x27;s expanding use beyond depression (OCD, smoking cessation, PTSD), this real-world safety data fills an important postmarketing surveillance gap.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> The relatively small number of unique adverse events (200 over 10 years) across all TMS devices is reassuring for clinicians recommending TMS. However, be aware of reporting delays and manufacturer-specific variations when counseling patients. This data supports TMS&#x27;s favorable safety profile but underscores the need for ongoing vigilance as indications expand.</div>
+  <a class="article-link" href="https://www.psychiatrist.com/jcp/postmarketing-transcranial-magnetic-stimulation-maude-database-adverse-events-advancements/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Centanafadine NDA Accepted for Priority Review for ADHD in Children, Adolescents, and Adults</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Regulatory Update</span>
+    &bull; 2026 Jan &bull; FDA / Otsuka <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">The FDA accepted for priority review the New Drug Application for centanafadine, a novel once-daily extended-release norepinephrine, dopamine, and serotonin reuptake inhibitor (NDSRI) for ADHD across all age groups. If approved, centanafadine would be the first new ADHD medication mechanism in decades — unlike existing stimulants (which primarily boost dopamine/norepinephrine) or atomoxetine (norepinephrine only), centanafadine adds serotonin reuptake inhibition, potentially offering ADHD benefit with anxiolytic and mood-stabilizing properties.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This could be a significant addition to the ADHD toolbox, particularly for patients with comorbid anxiety or mood symptoms who don&#x27;t tolerate stimulants well. Priority review means a decision is expected within 6-8 months. Start thinking about which patients in your practice might benefit from a triple reuptake inhibitor approach if this gains approval.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41506625/">Emerging Psychiatric Treatments, Barriers to Care and Public Health Challenges</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Australian &amp; New Zealand Journal of Psychiatry</span>
+    &bull; 2026 Feb &bull; Kisely S <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">Full text not yet available for interpretation — see the original article for details.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/41506625/">Read full article &rarr;</a>
+</div>
+</div>
+
+<div class="section" id="current-meds">
+  <div class="section-header">
+    <span class="section-icon">&#128138;</span>
+    <span class="section-title">Current Medication Updates</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrist.com/jcp/latency-lai-antipsychotic-initiation-hospitalization-first-episode-schizophrenia/">Latency to Long-Acting Injectable Antipsychotic Initiation and Psychiatric Hospitalization in First-Episode Schizophrenia</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2026 Feb &bull; Korean HIRA Database Study Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Using Korea&#x27;s national insurance claims database, researchers tracked 6,380 first-episode schizophrenia patients receiving LAI antipsychotics, grouping them by how long after diagnosis they started LAIs (&lt;1 year to &gt;5 years). A paradoxical finding emerged: while patients who started LAIs later showed better treatment adherence (possibly because they were more engaged with care by then), those who started LAIs early had significantly lower total hospitalization burden. This is one of the largest real-world studies on LAI timing in first-episode schizophrenia.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This supports the growing push to offer LAIs earlier in the illness course rather than reserving them for treatment failure. When you have a first-episode patient who&#x27;s stabilized, consider having the LAI conversation sooner rather than later — the hospitalization reduction benefit appears strongest with early initiation, even if patients initially seem adherent to oral medications.</div>
+  <a class="article-link" href="https://www.psychiatrist.com/jcp/latency-lai-antipsychotic-initiation-hospitalization-first-episode-schizophrenia/">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://journals.lww.com/psychopharmacology/abstract/9900/evaluating_the_effectiveness_of_cyproheptadine_on.513.aspx">Evaluating the Effectiveness of Cyproheptadine on Acute Neuroleptic-Induced Akathisia: A Randomized Controlled Trial</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Journal of Clinical Psychopharmacology</span>
+    &bull; 2026 Feb &bull; Journal of Clinical Psychopharmacology Research Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Akathisia remains one of the most distressing antipsychotic side effects, and current treatments (propranolol, benzodiazepines) don&#x27;t always work. This double-blind RCT tested cyproheptadine — a serotonin antagonist and antihistamine already available as a generic — against placebo for acute neuroleptic-induced akathisia. Cyproheptadine significantly reduced akathisia symptoms compared to placebo, suggesting its antiserotonergic properties may counteract the serotonin-mediated component of antipsychotic-induced restlessness.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This gives you another tool in the akathisia management toolbox, especially when propranolol is contraindicated (asthma, bradycardia) or benzodiazepines are undesirable. Cyproheptadine is inexpensive, widely available, and generally well-tolerated. Consider it as an alternative or adjunct for patients struggling with akathisia who haven&#x27;t responded to standard approaches.</div>
+  <a class="article-link" href="https://journals.lww.com/psychopharmacology/abstract/9900/evaluating_the_effectiveness_of_cyproheptadine_on.513.aspx">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://pubmed.ncbi.nlm.nih.gov/40875536/">Artificial Intelligence in Depression-Medication Enhancement (AID-ME): A Cluster Randomized Trial of a Deep-Learning-Enabled Clinical Decision Support System</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Journal of Clinical Psychiatry</span>
+    &bull; 2025 Aug &bull; Benrimoh D et al. <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Can an AI tool help clinicians pick the right antidepressant the first time? This cluster-randomized trial tested the Aifred Clinical Decision Support System, which uses deep learning to predict medication remission probabilities based on individual patient data. Clinicians randomized to the AI-assisted arm saw significantly improved remission rates and faster improvement compared to those using standard guidelines and questionnaires alone. The trial was conducted across diverse US and Canadian settings but was terminated early due to COVID-related funding shortfalls.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> While AI-guided prescribing isn&#x27;t mainstream yet, this is one of the first rigorous RCTs to show it can actually improve depression outcomes in real clinical settings. Keep an eye on tools like this — personalized treatment prediction may become a standard part of prescribing workflows within the next few years, particularly for patients who haven&#x27;t responded to initial treatment attempts.</div>
+  <a class="article-link" href="https://pubmed.ncbi.nlm.nih.gov/40875536/">Read full article &rarr;</a>
+</div>
+</div>
+
+<div class="section" id="novel-treatments">
+  <div class="section-header">
+    <span class="section-icon">&#129514;</span>
+    <span class="section-title">Novel Mechanisms &amp; Treatments</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">New Phase 3 Data: CAPLYTA (Lumateperone) Achieves Greater Remission in Major Depressive Disorder</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Press Release / Clinical Data</span>
+    &bull; 2026 Jan 16 &bull; Johnson &amp; Johnson / Intra-Cellular Therapies <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">New analysis of Phase 3 data shows that lumateperone (CAPLYTA) 42mg added to an antidepressant produced significantly higher remission rates in adults with MDD compared to placebo plus antidepressant at 6 weeks, with benefits sustained through a 6-month open-label extension. CAPLYTA is an atypical antipsychotic with a unique pharmacology — it simultaneously modulates serotonin, dopamine, and glutamate signaling. It&#x27;s already FDA-approved for adjunctive MDD treatment, schizophrenia, and bipolar depression.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> If you have MDD patients not reaching remission on their current antidepressant, this additional remission data strengthens the case for considering CAPLYTA as an adjunctive option. Its relatively favorable metabolic profile compared to other atypical antipsychotics makes it appealing, though somnolence and sedation remain common side effects to discuss with patients.</div>
+  <a class="article-link" href="https://www.jnj.com/media-center/press-releases/new-clinical-data-highlights-caplyta-lumateperone-as-a-promising-option-for-achieving-remission-in-adults-with-major-depressive-disorder">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://psychedelicalpha.com/news/2025-year-in-review-10-standout-stories-in-psychedelics">BPL-003 (Intranasal Mebufotenin) Shows Rapid, Durable Antidepressant Effects in Treatment-Resistant Depression: Phase 2b Results</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Clinical Trial Results</span>
+    &bull; 2026 Jan &bull; atai Life Sciences / Beckley Psytech <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">This Phase 2b trial — the largest controlled study of mebufotenin (a tryptamine psychedelic derived from toad secretions, also known as 5-MeO-DMT) — tested a single intranasal dose in treatment-resistant depression across 38 sites in 6 countries. The results were striking: BPL-003 produced rapid, robust, and durable antidepressant effects after just one dose. Unlike psilocybin sessions that take 6-8 hours, mebufotenin&#x27;s effects are brief (15-45 minutes), making it more practical for clinical settings.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is still investigational, but the practical advantages of mebufotenin over other psychedelic-assisted therapies (very short session duration, intranasal administration) could make it more scalable if approved. Watch for Phase 3 data. For now, patients asking about psychedelic treatments should know the evidence base is growing rapidly with multiple compounds in late-stage trials.</div>
+  <a class="article-link" href="https://psychedelicalpha.com/news/2025-year-in-review-10-standout-stories-in-psychedelics">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">Cobenfy (Xanomeline/Trospium) Fails Primary Endpoint as Adjunctive Treatment in Schizophrenia (ARISE Trial)</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Phase 3 Trial Results</span>
+    &bull; 2026 Feb &bull; Bristol-Myers Squibb <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">The much-anticipated ARISE Phase 3 trial tested Cobenfy (xanomeline/trospium) — the first muscarinic agonist-based antipsychotic, approved in 2024 as monotherapy for schizophrenia — as an add-on to atypical antipsychotics for patients with inadequately controlled symptoms. Unfortunately, adjunctive Cobenfy did not show a statistically significant difference from placebo. This is a setback for expanding Cobenfy&#x27;s use, though it remains approved and available as monotherapy where it has shown efficacy.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> Don&#x27;t write off Cobenfy based on this adjunctive failure — it still has a role as monotherapy for schizophrenia, particularly for patients who can&#x27;t tolerate dopamine D2-blocking agents. However, don&#x27;t expect it to work as an add-on to existing antipsychotics for partial responders. The mechanism of muscarinic agonism may not be complementary to dopamine blockade in the way that was hoped.</div>
+  <a class="article-link" href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">FDA Approves ProlivRx: First At-Home Neuromodulation Therapy for Treatment-Resistant Depression</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Approval / MOOD Trial</span>
+    &bull; 2026 Jan &bull; Neurolief Inc. <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">The FDA approved ProlivRx, the first prescription at-home brain neuromodulation device for adults with MDD who haven&#x27;t responded to at least one antidepressant. The device uses external Combined Occipital and Trigeminal Afferent Stimulation (eCOT-AS) — a novel approach that stimulates multiple nerve pathways simultaneously. The approval was based on the MOOD trial, a randomized, controlled, multicenter study showing ProlivRx significantly improved remission rates with a favorable safety profile. Unlike TMS, which requires clinic visits, ProlivRx is used at home under physician direction.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is a genuinely new treatment modality for your TRD patients. The at-home format removes the logistic barrier of daily clinic visits that limits TMS access. It&#x27;s worth learning more about ProlivRx&#x27;s specific protocol and candidacy criteria — it could be a practical option for treatment-resistant patients who can&#x27;t access TMS or don&#x27;t want to try ketamine/esketamine.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">NTX-253 (Muscarinic M4 PAM) Enters Phase 1 for Schizophrenia</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Clinical Pipeline Update</span>
+    &bull; 2026 Jan &bull; Neurocrine Biosciences 
+  </div>
+  <div class="article-summary">A new muscarinic M4 positive allosteric modulator (PAM) has entered Phase 1 testing for schizophrenia in healthy volunteers. Unlike Cobenfy&#x27;s direct muscarinic agonism, NTX-253 works by enhancing the brain&#x27;s own acetylcholine signaling at M4 receptors specifically, potentially offering antipsychotic effects with fewer peripheral cholinergic side effects (the GI issues that Cobenfy&#x27;s trospium component is designed to counteract). Preclinical data showed antipsychotic-like activity.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is very early-stage (Phase 1), but it signals that the muscarinic approach to schizophrenia treatment has multiple avenues being explored simultaneously. If M4-selective modulation proves effective, it could offer a cleaner side effect profile than broad muscarinic agonism. Something to watch over the next 2-3 years as clinical data emerges.</div>
+  <a class="article-link" href="https://www.psychiatrictimes.com/view/january-2026-in-review-updates-on-the-psychiatric-treatment-pipeline">Read full article &rarr;</a>
+</div>
+</div>
+
+<div class="section" id="lifestyle">
+  <div class="section-header">
+    <span class="section-icon">&#127793;</span>
+    <span class="section-title">Lifestyle Approaches</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2843424">Yoga for Opioid Withdrawal and Autonomic Regulation: A Randomized Clinical Trial</a></div>
+  <div class="article-meta">
+    <span class="journal-name">JAMA Psychiatry</span>
+    &bull; 2026 Jan 7 &bull; Goutham S, Bhargav H, Holla B et al. <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">Researchers from NIMHANS (India) and Harvard randomized patients with opioid use disorder receiving standard buprenorphine treatment to either yoga-augmented care or treatment as usual. The yoga group recovered from withdrawal dramatically faster — median 5 days versus 9 days. Beyond symptom relief, the study measured autonomic regulation (heart rate variability) and found yoga improved parasympathetic tone, suggesting a mechanism through which the mind-body practice reduces withdrawal distress. This is one of the first rigorous RCTs published in a top-tier journal showing yoga has measurable, clinically meaningful effects on substance withdrawal.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> For patients in opioid withdrawal or on buprenorphine, recommending structured yoga practice as an adjunct has real evidence behind it now. The nearly halved recovery time is clinically significant. Consider connecting patients with yoga programs during the withdrawal and early recovery phase — it&#x27;s low-risk, low-cost, and this JAMA Psychiatry data gives it strong evidentiary support.</div>
+  <a class="article-link" href="https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2843424">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.thelancet.com/journals/lanpsy/issue/current">ImPuls: Cost-Effective Group Exercise Intervention Improves Mental Health Across Diagnoses in Outpatient Care</a></div>
+  <div class="article-meta">
+    <span class="journal-name">The Lancet Psychiatry</span>
+    &bull; 2026 Jan 27 &bull; Lancet Psychiatry Research Group <span class="badge badge-cme">CME</span> <span class="badge badge-trial">Clinical Trial</span>
+  </div>
+  <div class="article-summary">The ImPuls program — a structured, group-based exercise intervention designed to work across multiple psychiatric diagnoses — was evaluated as an add-on to treatment-as-usual in outpatient psychiatric care. The results showed it was both clinically effective at improving mental health outcomes and cost-effective compared to standard care alone. What makes ImPuls notable is its transdiagnostic design: rather than being tailored to depression or anxiety specifically, it works across the diagnostic spectrum, making it practical for mixed outpatient settings where patients carry varied diagnoses.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is the kind of evidence needed to justify exercise programming in outpatient psych settings. If your practice or affiliated clinic is considering adding structured exercise groups, the ImPuls model provides an evidence-based, cost-effective framework. The transdiagnostic approach means you don&#x27;t need diagnosis-specific programs — one well-designed exercise group can benefit patients across your caseload.</div>
+  <a class="article-link" href="https://www.thelancet.com/journals/lanpsy/issue/current">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.sciencedaily.com/releases/2025/11/251105050730.htm">Mindfulness Meditation Side Effects: Large Study Identifies Risk Factors for Adverse Experiences</a></div>
+  <div class="article-meta">
+    <span class="journal-name">Scientific Reports / Nature</span>
+    &bull; 2025 Nov &bull; Van Dam N et al. <span class="badge badge-review">Review</span>
+  </div>
+  <div class="article-summary">A large study found that mindfulness meditation, while broadly beneficial, can cause adverse experiences in certain individuals. People who had active mental health symptoms or psychological distress within 30 days before meditating were significantly more likely to report negative effects. Intensive residential retreats with extended silent meditation periods were also a risk factor for functional impairment. Researcher Nicholas Van Dam emphasized that the field needs better informed consent practices so participants understand meditation isn&#x27;t universally benign.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> When recommending mindfulness to patients, consider their current symptom severity. Patients with active psychosis, severe dissociation, or acute PTSD symptoms may not be good candidates for intensive meditation practices. Recommend graduated approaches — start with brief, guided sessions rather than jumping into silent retreats. This data supports individualized recommendations rather than blanket endorsement of mindfulness for all psychiatric patients.</div>
+  <a class="article-link" href="https://www.sciencedaily.com/releases/2025/11/251105050730.htm">Read full article &rarr;</a>
+</div>
+</div>
+
+<div class="section" id="fda-watch">
+  <div class="section-header"><span class="section-icon">&#9888;</span><span class="section-title">FDA Watch</span></div>
+<div class="fda-alert"><div class="fda-alert-title"><a href="https://www.hcplive.com/view/fda-recap-january-2026">GLP-1 Receptor Agonists: Suicidal Ideation Warning Removed</a></div><div class="fda-alert-desc">FDA requested removal of suicidal ideation/behavior risk language from labels of liraglutide (Saxenda), semaglutide (Wegovy), and tirzepatide (Zepbound) after comprehensive review of 100,000+ patients found no evidence of psychiatric risk.</div></div>
+<div class="fda-alert"><div class="fda-alert-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">ProlivRx Approved: First At-Home Neuromodulation for Treatment-Resistant Depression</a></div><div class="fda-alert-desc">FDA approved Neurolief&#x27;s ProlivRx, the first prescription at-home brain neuromodulation device for MDD patients who haven&#x27;t responded to at least one antidepressant. Uses eCOT-AS technology.</div></div>
+<div class="fda-alert"><div class="fda-alert-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Centanafadine NDA Accepted for Priority Review (ADHD)</a></div><div class="fda-alert-desc">FDA accepted the NDA for centanafadine, a novel triple reuptake inhibitor (NE/DA/5-HT), for ADHD treatment in children, adolescents, and adults. Priority review designation granted.</div></div>
+</div>
+<div class="section" id="guidelines">
+  <div class="section-header">
+    <span class="section-icon">&#128203;</span>
+    <span class="section-title">Guidelines &amp; Policy</span>
+  </div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/fda-recap-january-2026">FDA Removes Suicidal Ideation Warning from GLP-1 Receptor Agonist Labels</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Drug Safety Communication</span>
+    &bull; 2026 Jan 13 &bull; FDA Safety Communication <span class="badge badge-cme">CME</span> <span class="badge badge-guideline">Guideline</span>
+  </div>
+  <div class="article-summary">After a comprehensive review including meta-analyses of over 100,000 patients and large real-world studies, the FDA concluded there is no evidence linking GLP-1 receptor agonists (liraglutide/Saxenda, semaglutide/Wegovy, tirzepatide/Zepbound) to increased risk of suicidal ideation, self-harm, or other psychiatric adverse events. The agency has requested manufacturers remove the suicidal ideation/behavior risk language from product labeling. This resolves a concern that had been flagged when early adverse event reports trickled in as GLP-1 use exploded for weight management.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This is reassuring for the many psychiatric patients on GLP-1 agonists for weight management — especially those on antipsychotics with metabolic side effects. You can counsel patients that the FDA has thoroughly investigated and cleared these medications of psychiatric risk. No need to avoid GLP-1 agonists in patients with mood disorders or suicidal ideation history based on this concern.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/fda-recap-january-2026">Read full article &rarr;</a>
+</div>
+<div class="article-card">
+  <div class="article-title"><a href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Centanafadine NDA Accepted for Priority Review for ADHD in Children, Adolescents, and Adults</a></div>
+  <div class="article-meta">
+    <span class="journal-name">FDA Regulatory Update</span>
+    &bull; 2026 Jan &bull; FDA / Otsuka <span class="badge badge-cme">CME</span>
+  </div>
+  <div class="article-summary">The FDA accepted for priority review the New Drug Application for centanafadine, a novel once-daily extended-release norepinephrine, dopamine, and serotonin reuptake inhibitor (NDSRI) for ADHD across all age groups. If approved, centanafadine would be the first new ADHD medication mechanism in decades — unlike existing stimulants (which primarily boost dopamine/norepinephrine) or atomoxetine (norepinephrine only), centanafadine adds serotonin reuptake inhibition, potentially offering ADHD benefit with anxiolytic and mood-stabilizing properties.</div>
+  <div class="clinical-impl"><strong>Implications for practice:</strong> This could be a significant addition to the ADHD toolbox, particularly for patients with comorbid anxiety or mood symptoms who don&#x27;t tolerate stimulants well. Priority review means a decision is expected within 6-8 months. Start thinking about which patients in your practice might benefit from a triple reuptake inhibitor approach if this gains approval.</div>
+  <a class="article-link" href="https://www.hcplive.com/view/6-psychiatry-headlines-you-missed-in-january-2026">Read full article &rarr;</a>
+</div>
+</div>
+
+<div class="section" id="case-studies">
+  <div class="section-header">
+    <span class="section-icon">&#128269;</span>
+    <span class="section-title">Case Studies</span>
+  </div>
+  <p class="empty-section">No articles in this category today.</p>
+</div>
+
+<div class="section" id="quick-reads">
+  <div class="section-header"><span class="section-icon">&#9889;</span><span class="section-title">Quick Reads</span></div>
+<p class="empty-section">No additional articles today.</p></div>
+<div class="footer">
+  <p>Psych Research Daily &mdash; Generated February 16, 2026 at 05:55 PM</p>
+  <p>Sources: <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed/MEDLINE</a> &bull;
+     <a href="https://www.fda.gov/drugs/drug-safety-and-availability">FDA MedWatch</a> &bull;
+     <a href="https://psychiatry.org/">APA</a></p>
+  <p style="margin-top:8px;font-size:.9em">Articles flagged <span class="badge badge-cme">CME</span> may be relevant for continuing education.</p>
+</div>
+</div></body></html>

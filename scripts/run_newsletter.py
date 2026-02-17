@@ -616,6 +616,120 @@ def fetch_all_data():
     return articles, fda_alerts
 
 
+def enrich_articles_with_ai(raw_json_path, enriched_json_path):
+    """Call the Anthropic API to generate synopses and clinical implications for each article."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        print("ERROR: ANTHROPIC_API_KEY not set. Skipping AI enrichment.")
+        return False
+
+    with open(raw_json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    articles = data.get("articles", [])
+    if not articles:
+        print("No articles to enrich.")
+        return False
+
+    print(f"\nEnriching {len(articles)} articles with AI synopses...")
+
+    # Process articles in batches of 10 to keep prompt size manageable
+    BATCH_SIZE = 10
+    enriched_count = 0
+
+    for batch_start in range(0, len(articles), BATCH_SIZE):
+        batch = articles[batch_start:batch_start + BATCH_SIZE]
+        batch_num = (batch_start // BATCH_SIZE) + 1
+        total_batches = (len(articles) + BATCH_SIZE - 1) // BATCH_SIZE
+        print(f"  Batch {batch_num}/{total_batches} ({len(batch)} articles)...")
+
+        # Build the prompt with article data
+        articles_text = ""
+        for i, a in enumerate(batch):
+            abstract_preview = (a.get("abstract") or "Abstract not available.")[:1500]
+            articles_text += f"""
+--- ARTICLE {i + 1} ---
+Title: {a['title']}
+Journal: {a.get('journal', 'Unknown')}
+Type: {a.get('type', 'other')}
+Abstract: {abstract_preview}
+"""
+
+        prompt = f"""You are a psychiatric research analyst writing for practicing clinicians (psychiatrists, psychiatric PAs, and NPs). For each article below, write:
+
+1. **synopsis**: A concise 2-3 sentence plain-language summary of the study's key findings and methodology. Focus on what was studied, key results, and effect sizes when available. Write for a clinical audience — assume familiarity with psychiatric terminology.
+
+2. **implications**: A single sentence starting with a practical takeaway for clinical practice. What should a prescriber or clinician consider based on this study?
+
+Return ONLY valid JSON — an array of objects, one per article, in the same order. Each object must have exactly two keys: "synopsis" and "implications". No markdown, no extra text.
+
+{articles_text}
+
+Return JSON array:"""
+
+        # Call Anthropic Messages API using stdlib
+        request_body = json.dumps({
+            "model": "claude-sonnet-4-5-20250514",
+            "max_tokens": 4096,
+            "messages": [{"role": "user", "content": prompt}],
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=request_body,
+            headers={
+                "Content-Type": "application/json",
+                "x-api-key": api_key,
+                "anthropic-version": "2023-06-01",
+            },
+            method="POST",
+        )
+
+        try:
+            resp = urllib.request.urlopen(req, timeout=120, context=_ssl_ctx)
+            resp_body = json.loads(resp.read().decode("utf-8"))
+            ai_text = resp_body["content"][0]["text"].strip()
+
+            # Parse the JSON response — handle possible markdown wrapping
+            if ai_text.startswith("```"):
+                ai_text = ai_text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+
+            batch_results = json.loads(ai_text)
+
+            # Apply synopses back to articles
+            for i, result in enumerate(batch_results):
+                if i < len(batch):
+                    idx = batch_start + i
+                    articles[idx]["synopsis"] = result.get("synopsis", "")
+                    articles[idx]["implications"] = result.get("implications", "")
+                    enriched_count += 1
+
+        except urllib.error.HTTPError as e:
+            error_body = e.read().decode("utf-8", errors="replace")
+            print(f"    API error {e.code}: {error_body[:200]}")
+            continue
+        except (json.JSONDecodeError, KeyError, IndexError) as e:
+            print(f"    Failed to parse AI response: {e}")
+            continue
+        except Exception as e:
+            print(f"    Enrichment failed for batch: {e}")
+            continue
+
+        # Rate limit: pause between batches
+        if batch_start + BATCH_SIZE < len(articles):
+            time.sleep(1)
+
+    print(f"  Enriched {enriched_count}/{len(articles)} articles.")
+
+    # Save enriched data
+    data["articles"] = articles
+    data["ai_mode"] = True
+    with open(enriched_json_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    print(f"  Saved: {enriched_json_path}")
+    return True
+
+
 def save_raw_json(articles, fda_alerts, path):
     """Save raw article data as JSON for the Cowork skill to process."""
     data = {
@@ -720,6 +834,17 @@ if __name__ == "__main__":
         print(f"Data saved to {json_path}")
         sys.exit(0)
 
+    # Check for --enrich mode (call Anthropic API to add synopses)
+    if "--enrich" in sys.argv:
+        print("Enriching articles with AI synopses...")
+        raw_path = os.path.join(OUTPUT_DIR, "raw_articles.json")
+        enriched_path = os.path.join(OUTPUT_DIR, "enriched_articles.json")
+        if not os.path.exists(raw_path):
+            print(f"ERROR: {raw_path} not found. Run --fetch-only first.")
+            sys.exit(1)
+        success = enrich_articles_with_ai(raw_path, enriched_path)
+        sys.exit(0 if success else 1)
+
     # Check for --build-from-json mode (used after Cowork enrichment)
     if "--build-from-json" in sys.argv:
         json_path = os.path.join(OUTPUT_DIR, "enriched_articles.json")
@@ -742,5 +867,5 @@ if __name__ == "__main__":
     # Default: full standalone mode
     success = main()
     if not success:
-        input("\nPress Enter to close this window...")
-        sys.exit(1)
+    input("\nPress Enter to close this window...")
+    sys.exit(1)
